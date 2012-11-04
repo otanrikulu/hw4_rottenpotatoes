@@ -1,8 +1,13 @@
 class MoviesController < ApplicationController
 
+  def search_tmdb
+	@movies = Movie.find_in_tmdb(params[:search_terms])
+  end
+
   def show
     id = params[:id] # retrieve movie ID from URI route
     @movie = Movie.find(id) # look up movie by unique ID
+    @director = @movie.director
     # will render app/views/movies/show.<extension> by default
   end
 
@@ -62,6 +67,17 @@ class MoviesController < ApplicationController
     @movie.destroy
     flash[:notice] = "Movie '#{@movie.title}' deleted."
     redirect_to movies_path
+  end
+
+  def same_movies
+    @movie = Movie.find_by_id(params[:id])
+    @director = @movie.director
+    if not @movie.director.blank? then
+	@movies = Movie.find_similar(@director)
+    else
+	flash[:notice] = "Back to all movies. #{@movie.title} has no director information."
+	redirect_to movies_path
+    end
   end
 
 end

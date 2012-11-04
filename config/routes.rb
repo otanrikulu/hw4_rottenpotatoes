@@ -14,6 +14,10 @@ Rottenpotatoes::Application.routes.draw do
   #   resources :products
   resources :movies
 
+  post '/movies/search_tmdb'
+  match "same_movies" => "movies#same_movies"
+
+
   # Sample resource route with options:
   #   resources :products do
   #     member do
