@@ -26,10 +26,14 @@ module NavigationHelpers
 	edit_movie_path(Movie.find_by_title($1).id)
 
     when /^the details page for "([^"]+)"$/
-	edit_movie_path(Movie.find_by_title($1).id)
+#	debugger
+	movie_path(Movie.find_by_title($1).id)
+
+#    when /^the Similar Movies page for "([^"]+)"$/
+#         '/movies/samemovies/' + Movie.find_by_title($1).id
 
     when /^the Similar Movies page for "([^"]+)"$/
-         '/movies/same_movies/' + Movie.find_by_title($1).id.to_s
+      samemovies_path(Movie.find_by_title($1).id)
 
     else
       begin

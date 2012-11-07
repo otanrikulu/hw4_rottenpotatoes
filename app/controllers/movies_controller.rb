@@ -69,7 +69,7 @@ class MoviesController < ApplicationController
     redirect_to movies_path
   end
 
-  def same_movies
+  def samemovies
     @movie = Movie.find_by_id(params[:id])
     @director = @movie.director
     if not @movie.director.blank? then

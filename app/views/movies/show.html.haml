@@ -1,4 +1,5 @@
 -# in app/views/movies/show.html.haml
+<meta http-equiv='Content-Type' content='text/html' />
 
 %h2 Details about #{@movie.title}
 
@@ -21,5 +22,6 @@
 = link_to 'Edit', edit_movie_path(@movie)
 = button_to 'Delete', movie_path(@movie), :method => :delete, :confirm => 'Are you sure?'
 = link_to 'Back to movie list', movies_path
-= link_to 'Find Movies With Same Director',  :controller => "movies", :action => "same_movies", :id => @movie.id
+= link_to 'Find Movies With Same Director', samemovies_path(:id => @movie)
+-#= link_to 'Find Movies With Same Director', :controller => "movies", :action => "samemovies", :id => @movie
 

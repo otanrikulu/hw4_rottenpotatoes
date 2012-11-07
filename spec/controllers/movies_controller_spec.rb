@@ -9,27 +9,27 @@ describe MoviesController do
 	end
 	it 'should (1) generate a restful route for finding similar movies' do
 #	  @movie = FactoryGirl.build(:movie, :title => 'Milk', :rating => 'R', :director => 'velidede')	
-	  get :same_movies, {:id => @fake_movie.id}
+	  get :samemovies, {:id => @fake_movie.id}
 	  response.should be_success
 	end
 	it 'should (2) call a controller method to receive the click and grab the id of the current movie' do
 #	  @movie = FactoryGirl.build(:movie, :title => 'Milk', :rating => 'R', :director => 'velidede')
-	  post :same_movies, {:id => @fake_movie.id}
+	  post :samemovies, {:id => @fake_movie.id}
 	  response.should be_success
 	end
 	it 'should (3) find similar movies' do
 #	  @movie = FactoryGirl.build(:movie, :title => 'Milk', :rating => 'R', :director => 'velidede')
 	  Movie.should_receive(:find_similar).with('velidede').and_return(@fake_movie)
-	  get :same_movies, {:id => @fake_movie.id}
+	  get :samemovies, {:id => @fake_movie.id}
 	  response.should be_success
 	end
 	describe 'after valid search' do
 	  before :each do
 	    Movie.should_receive(:find_similar).with('velidede').and_return(@fake_movie)
-	    post :same_movies, {:id => @fake_movie.id}
+	    post :samemovies, {:id => @fake_movie.id}
 	  end
 	  it 'should (4) select same template for rendering results' do
-	    response.should render_template('same_movies')
+	    response.should render_template('samemovies')
 	  end
 	  it 'should (5) make the search results available to that template' do
             assigns(:movies).should == @fake_movie

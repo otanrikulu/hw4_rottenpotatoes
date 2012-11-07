@@ -15,7 +15,7 @@ Rottenpotatoes::Application.routes.draw do
   resources :movies
 
   post '/movies/search_tmdb'
-  match "same_movies" => "movies#same_movies"
+  match "samemovies" => "movies#samemovies"
 
 
   # Sample resource route with options:
